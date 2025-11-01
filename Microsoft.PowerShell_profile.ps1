@@ -4,12 +4,21 @@ Invoke-Expression (& { (zoxide init powershell | Out-String) })
 Import-Module PSFzf
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
 
-function y {
+function y
+{
     $tmp = (New-TemporaryFile).FullName
     yazi $args --cwd-file="$tmp"
     $cwd = Get-Content -Path $tmp -Encoding UTF8
-    if (-not [String]::IsNullOrEmpty($cwd) -and $cwd -ne $PWD.Path) {
+    if (-not [String]::IsNullOrEmpty($cwd) -and $cwd -ne $PWD.Path)
+    {
         Set-Location -LiteralPath (Resolve-Path -LiteralPath $cwd).Path
     }
     Remove-Item -Path $tmp
+}
+
+Set-Alias -Name lg -Value lazygit
+
+function gpr
+{
+    git pull --rebase
 }
