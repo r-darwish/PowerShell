@@ -3,6 +3,8 @@ Invoke-Expression (&starship init powershell)
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 Import-Module PSFzf
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
+Set-Alias -Name ls -Value eza
+$env:EDITOR = "nvim"
 
 function y
 {
@@ -21,4 +23,9 @@ Set-Alias -Name lg -Value lazygit
 function gpr
 {
     git pull --rebase
+}
+
+function reloadpath
+{
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 }
