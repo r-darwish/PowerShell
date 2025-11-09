@@ -1,4 +1,7 @@
 Set-PSReadLineOption -EditMode Emacs
+Set-PSReadLineKeyHandler -Chord Alt+LeftArrow -Function BackwardWord
+Set-PSReadLineKeyHandler -Chord Alt+RightArrow -Function ForwardWord
+
 Invoke-Expression (&starship init powershell)
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 Import-Module PSFzf
