@@ -1,6 +1,7 @@
 Set-PSReadLineOption -EditMode Emacs
 Set-PSReadLineKeyHandler -Chord Alt+LeftArrow -Function BackwardWord
 Set-PSReadLineKeyHandler -Chord Alt+RightArrow -Function ForwardWord
+Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 
 Invoke-Expression (&starship init powershell)
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
