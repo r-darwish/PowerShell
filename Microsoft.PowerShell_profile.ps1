@@ -1,7 +1,6 @@
 Set-PSReadLineOption -EditMode Emacs
 Set-PSReadLineKeyHandler -Chord Alt+LeftArrow -Function BackwardWord
 Set-PSReadLineKeyHandler -Chord Alt+RightArrow -Function ForwardWord
-Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 
 Invoke-Expression (&starship init powershell)
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
@@ -35,3 +34,11 @@ function reloadpath
 }
 
 $env:FZF_DEFAULT_OPTS = '--highlight-line --info=inline-right --ansi --layout=reverse --border=none  --color=border:#27a1b9 --color=fg:#c0caf5 --color=gutter:#16161e --color=header:#ff9e64 --color=hl+:#2ac3de --color=hl:#2ac3de --color=info:#545c7e --color=marker:#ff007c --color=pointer:#ff007c --color=prompt:#2ac3de --color=query:#c0caf5:regular --color=scrollbar:#27a1b9 --color=separator:#ff9e64 --color=spinner:#ff007c'
+
+function wi
+{
+    param (
+        $query
+    )
+    Find-WinGetPackage $query | Out-ConsoleGridView -OutputMode Single | Install-WinGetPackage
+}
