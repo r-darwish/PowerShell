@@ -40,5 +40,11 @@ function wi
     param (
         $query
     )
-    Find-WinGetPackage $query | Out-ConsoleGridView -OutputMode Single | Install-WinGetPackage
+    Find-WinGetPackage $query | Out-GridView -OutputMode Single | Install-WinGetPackage
+}
+
+
+function wr
+{
+    Get-WinGetPackage | Out-GridView -OutputMode Multiple | Uninstall-WinGetPackage
 }
