@@ -1,6 +1,14 @@
 Set-PSReadLineOption -EditMode Emacs
 Set-PSReadLineKeyHandler -Chord Alt+LeftArrow -Function BackwardWord
 Set-PSReadLineKeyHandler -Chord Alt+RightArrow -Function ForwardWord
+Set-PSReadLineOption -Colors @{
+    Parameter = 'Magenta'
+    Command = 'Cyan'
+    String = 'Cyan'
+    Operator = 'White'
+    Member = 'White'
+    Type = 'White'
+}
 
 Invoke-Expression (&starship init powershell)
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
