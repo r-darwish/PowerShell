@@ -10,6 +10,8 @@ Set-PSReadLineOption -Colors @{
     Type = 'White'
 }
 
+$env:_ZO_EXCLUDE_DIRS = ""
+
 Invoke-Expression (&starship init powershell)
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 Import-Module PSFzf
